@@ -63,7 +63,7 @@ TCP把连接作为最基本的对象，每一条TCP连接都有两个端点，�
 
 当服务器收到客户端的确认后也进入ESTABLISHED状态，此后双方就可以开始通信了。
 
-![tcp-open](../images/tcp_open.png)
+<img src="../images/tcp_open.png" alt="tcp-open" style="zoom: 33%;" />
 
 #### 握手时产生的序列号干什么用的
 
@@ -97,7 +97,7 @@ Client伪造大量随机IP，向Server发送ACK=0，SYN=1，seq=X的第一步的
 
 6. 服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，**服务器结束TCP连接的时间要比客户端早一些**。
 
-![tcp-close](../images/tcp_close.png)
+<img src="../images/tcp_close.png" alt="tcp-close" style="zoom:33%;" />
 
 #### 为什么客户端最后还要等待2MSL？
 
@@ -171,7 +171,7 @@ TCP的滑动窗口是以字节为单位的。发送方为A，维护发送窗口�
 
 ##### 拥塞控制的手段
 
-![tcp-traffic-control](../images/tcp_traffic_control.jpeg)
+<img src="../images/tcp_traffic_control.jpeg" alt="tcp-traffic-control" style="zoom:33%;" />
 
 - **慢开始**
 
@@ -205,9 +205,9 @@ TCP的滑动窗口是以字节为单位的。发送方为A，维护发送窗口�
 
 在采用快恢复算法时，慢开始算法只是在TCP连接建立时和网络出现超时时才使用。 
 
-![tcp-repost](../images/tcp_fast_repost.png)
+<img src="../images/tcp_fast_repost.png" alt="tcp-repost" style="zoom:33%;" />
 
-![tcp-traffic-control](../images/tcp_fast_repost2.jpeg)
+<img src="../images/tcp_fast_repost2.jpeg" alt="tcp-traffic-control" style="zoom: 50%;" />
 
 - **随机早期检测 RED**
 

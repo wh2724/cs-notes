@@ -67,7 +67,7 @@ MySQL选用B+树这种数据结构作为索引，可以提高查询索引时的�
 3. 有k个关键字(关键字按递增次序排列)的非叶结点恰好有k+1个孩子
 4. 所有叶子节点在同一层，即所有叶子几点高度一致
 
-![](../images/b_tree.png)
+<img src="../images/b_tree.png" style="zoom:50%;" />
 
 **B+树**是从B树的变体。跟B树的不同：
 
@@ -75,7 +75,7 @@ MySQL选用B+树这种数据结构作为索引，可以提高查询索引时的�
 2. B+树的叶子节点之间存在指针相连，而且是单链表
 3. 有k个关键字(关键字按递增次序排列)的非叶结点恰好有k个孩子
 
-![](../images/b+_tree.png)
+<img src="../images/b+_tree.png" style="zoom:50%;" />
 
 |                                   | B树                              | B+树                                                         |
 | --------------------------------- | -------------------------------- | ------------------------------------------------------------ |
@@ -247,7 +247,7 @@ InnoDB 表只会把自增主键的最大 id 记录在内存中，所以重启之
 
 ### 16. SQL语句怎么执行的
 
-![execute](../images/mysql_execute.png)
+<img src="../images/mysql_execute.png" alt="execute" style="zoom: 33%;" />
 
  
 
@@ -263,15 +263,15 @@ InnoDB 表只会把自增主键的最大 id 记录在内存中，所以重启之
 
 （1）Simple Nested-Loop Join（简单嵌套）：r为驱动表，s为匹配表，可以看到从r中分别取出r1、r2、......、rn去匹配s表的左右列，然后再合并数据，对s表进行了rn次访问，对数据库开销大
 
-![join-1](../images/mysql_join1.png)
+<img src="../images/mysql_join1.png" alt="join-1" style="zoom: 50%;" />
 
 （2）Index Nested-Loop Join（索引嵌套）：这个要求非驱动表（匹配表s）上有索引，可以通过索引来减少比较，加速查询。在查询时，驱动表（r）会根据关联字段的索引进行查找，当在索引上找到符合的值，再回表进行查询，也就是只有当匹配到索引以后才会进行回表查询。如果非驱动表（s）的关联健是主键的话，性能会非常高，如果不是主键，要进行多次回表查询，先关联索引，然后根据二级索引的主键ID进行回表操作，性能上比索引是主键要慢。
 
-![join-2](../images/mysql_join2.png)
+<img src="../images/mysql_join2.png" alt="join-2" style="zoom:50%;" />
 
 （3）Block Nested-Loop Join（块嵌套）：如果有索引，会选取第二种方式进行join，但如果join列没有索引，就会采用Block Nested-Loop Join。可以看到中间有个join buffer缓冲区，是将驱动表的所有join相关的列都先缓存到join buffer中，然后批量与匹配表进行匹配，将第一种多次比较合并为一次，降低了非驱动表（s）的访问频率。
 
-![join-3](../images/mysql_join3.png)
+<img src="../images/mysql_join3.png" alt="join-3" style="zoom:50%;" />
 
 ### 18. MySQL的主从复制原理，读写分离如何实现
 

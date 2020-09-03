@@ -22,7 +22,7 @@ Redis有序集合zset的底层实现——跳跃表skiplist。
 
 下图用a,b,c,d,e五种有序链表及其变式。
 
-![skip-list](../images/skip_list.jpeg)
+<img src="../images/skip_list.jpeg" alt="skip-list" style="zoom:50%;" />
 
 - [a]单链表：查询时间复杂度O(n)
 
@@ -44,7 +44,7 @@ Redis有序集合zset的底层实现——跳跃表skiplist查找的时间复杂
 
 Redis中的有序集合(zset) 支持的操作：插入、删除、查找、有序输出所有元素、按照范围区间查找元素（比如查找值在 [100, 356] 之间的数据）其中，前四个操作红黑树也可以完成，且时间复杂度跟跳表是一样的。但是，按照区间来查找数据这个操作，红黑树的效率没有跳表高。按照区间查找数据时，跳表可以做到 O(logn) 的时间复杂度定位区间的起点，然后在原始链表中顺序往后遍历就可以了，非常高效。 跳表是一个随机化的数据结构，实质就是一种可以进行二分查找的有序链表，跳表在原有的有序链表上面增加了多级索引，通过索引来实现快速查找，跳表不仅能提高搜索性能，同时也可以提高插入和删除操作的性能。
 
-![skip-list](../images/skip_list2.jpeg)
+<img src="../images/skip_list2.jpeg" alt="skip-list" style="zoom:50%;" />
 
 #### 6.Redis为什么效率高
 
@@ -133,19 +133,19 @@ Redis可以在AOF文件体积变得过大时，自动地在后台对AOF进行重
 
 （1）目前的哈希表状态：哈希表中的每个节点都已经使用到了，这时候我们需要对哈希表进行拓展
 
-![rehash1](../images/redis_rehash0.png)
+<img src="../images/redis_rehash0.png" alt="rehash1" style="zoom:50%;" />
 
 （2）为哈希表分配空间：哈希表空间分配规则：如果执行的是拓展操作，那么ht[1]的大小为第一个大于等于ht[0]二倍的2的n次幂如果执行的是收缩操作，那么ht[1]的大小为第一个大于等于ht[0]的2的n次幂。因此这里我们为ht[1]分配空间为8
 
-![rehash2](../images/redis_rehash1.png)
+<img src="../images/redis_rehash1.png" alt="rehash2" style="zoom:50%;" />
 
 （3）数据转移：将ht[0]中的数据转移到ht[1]中，在转移的过程中，需要对哈希表节点的数据重新进行哈希值计算数据转移后的结果
 
-![rehash3](../images/redis_rehash2.png)
+<img src="../images/redis_rehash2.png" alt="rehash3" style="zoom:50%;" />
 
 （4）释放ht[0]：将ht[0]释放，然后将ht[1]设置成ht[0]，最后为ht[1]分配一个空白哈希表
 
-![rehash4](../images/redis_rehash3.png)
+<img src="../images/redis_rehash3.png" alt="rehash4" style="zoom:50%;" />
 
 *渐进式Rehash* 在进行拓展或者压缩的时候，可以直接将所有的键值对rehash到ht[1]中，这是因为数据量比较小。在实际开发过程中，这个rehash 操作并不是一次性、集中式完成的，而是分多次、渐进式地完成的。
 
@@ -167,11 +167,11 @@ Redis可以在AOF文件体积变得过大时，自动地在后台对AOF进行重
 
 - 未使用pipeline执行N条命令
 
-![pipline1](../images/redis_pipline1.png)
+<img src="../images/redis_pipline1.png" alt="pipline1" style="zoom: 50%;" />
 
 - 使用了pipeline执行N条命令
 
-![pipline2](../images/redis_pipline2.png)
+<img src="../images/redis_pipline2.png" alt="pipline2" style="zoom: 50%;" />
 
 区别：
 
@@ -242,7 +242,7 @@ Redis可以在AOF文件体积变得过大时，自动地在后台对AOF进行重
 
 ⑥从服务器完成对快照的载入，开始接收命令请求，并执行来自主服务器缓冲区的写命令；
 
-![master-slave](../images/redis_master_sync.png)
+<img src="../images/redis_master_sync.png" alt="master-slave" style="zoom: 50%;" />
 
 - 增量同步：Redis增量复制是指slave初始化后开始正常工作时主服务器发生的写操作同步到从服务器的过程。
 
