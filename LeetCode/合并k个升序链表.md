@@ -55,46 +55,45 @@ Python heapq docs:
 
 # 两两合并，会超时
 def merge_K_lists(self, lists: List[ListNode]) -> ListNode:
-  def merge_two_lists(l1, l2):
-    if l1 and l2:
-      if l1.val > l2.val:
-        l1, l2 = l2, l1
+    def merge_two_lists(l1, l2):
+      if l1 and l2:
+        if l1.val > l2.val:
+          l1, l2 = l2, l1
         l1.next = merge_two_lists(l1.next, l2)
-    return l1 or l2
+      return l1 or l2
 
-  if not lists:
-    return None
+    if not lists:
+        return None
 
-  res = lists[0]
-  for i in range(1, len(lists)):
+    res = lists[0]
+    for i in range(1, len(lists)):
     res = merge_two_lists(res, lists[i])
 	
-  return res
+    return res
 
 # 使用Python内置堆heapq
 import heapq
 def merge_K_lists(self, lists: List[ListNode]) -> ListNode:
-  pre = ListNode(0)
-  cur = pre
+    pre = ListNode(0)
+    cur = pre
 
-  # init heap
-  heap = []
-  for index, node in enumerate(lists):
-    if node:
-      heapq.heappush(heap, (node.val, index))
+    # init heap
+    heap = []
+    for index, node in enumerate(lists):
+      if node:
+        heapq.heappush(heap, (node.val, index))
 
-  while heap:
-    _val, index = heapq.heappop(heap)
-    node = lists[index]
-    cur.next = node
-    cur = cur.next
+    while heap:
+      _val, index = heapq.heappop(heap)
+      node = lists[index]
+      cur.next = node
+      cur = cur.next
 
     if node.next:
       lists[index] = node.next
       heapq.heappush(heap, (node.next.val, index))
-
-	return pre.next
-  
+      
+    return pre.next
   
 ```
 
