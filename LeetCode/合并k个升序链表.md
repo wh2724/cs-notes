@@ -56,11 +56,11 @@ Python heapq docs:
 # 两两合并，会超时
 def merge_K_lists(self, lists: List[ListNode]) -> ListNode:
     def merge_two_lists(l1, l2):
-      if l1 and l2:
-        if l1.val > l2.val:
-          l1, l2 = l2, l1
-        l1.next = merge_two_lists(l1.next, l2)
-      return l1 or l2
+    	if l1 and l2:
+            if l1.val > l2.val:
+                l1, l2 = l2, l1
+            l1.next = merge_two_lists(l1.next, l2)
+        return l1 or l2
 
     if not lists:
         return None
@@ -80,18 +80,18 @@ def merge_K_lists(self, lists: List[ListNode]) -> ListNode:
     # init heap
     heap = []
     for index, node in enumerate(lists):
-      if node:
-        heapq.heappush(heap, (node.val, index))
+        if node:
+            heapq.heappush(heap, (node.val, index))
 
     while heap:
-      _val, index = heapq.heappop(heap)
-      node = lists[index]
-      cur.next = node
-      cur = cur.next
+        _val, index = heapq.heappop(heap)
+        node = lists[index]
+        cur.next = node
+        cur = cur.next
 
-    if node.next:
-      lists[index] = node.next
-      heapq.heappush(heap, (node.next.val, index))
+        if node.next:
+            lists[index] = node.next
+            heapq.heappush(heap, (node.next.val, index))
       
     return pre.next
   
