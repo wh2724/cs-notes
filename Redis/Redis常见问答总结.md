@@ -1,10 +1,12 @@
 ## Redis基础
 
-#### 1.Redis数据结构
+#### 1.Redis数据类型
 
 string（字符串）、list（列表）、hash（字典）、set（集合）、zset（有序集合）。
 
-Redis 的value值最大可以达到 512MB。
+Redis 的String value值最大可以达到 512MB；
+
+Redis 的list、set、hash最大元素(键值对)个数为2^32 -1;
 
 #### 2.Redis底层是通过什么实现的
 
@@ -72,7 +74,7 @@ Redis中的有序集合(zset) 支持的操作：插入、删除、查找、有�
 
 #### 9.Redis内存淘汰机制
 
-如果大量过期key堆积在内存里，导致redis内存块耗尽了，咋整？答案是：走内存淘汰机制。
+如果大量过期key堆积在内存里，导致redis内存块耗尽了，咋整？——**内存淘汰机制**
 
 ① **volatile-lru**：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
 
