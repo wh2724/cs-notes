@@ -10,6 +10,7 @@
 | SMTP       | 25     | TCP                                 |
 | DNS        | 53     | UDP/TCP（长度超过512字节时使用TCP） |
 | HTTP       | 80     | TCP                                 |
+| HTTPS      | 443    | TCP                                 |
 | SSH        | 22     | TCP                                 |
 | MySQL      | 3306   | TCP                                 |
 
