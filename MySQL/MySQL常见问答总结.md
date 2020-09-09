@@ -242,9 +242,11 @@ InnoDB 引擎采取的是 `wait-for graph` 等待图的方法来自动检测死�
 
 - 表类型如果是 MyISAM，那 id 就是 8
 
-- 表类型如果是 InnoDB，那 id 就是 6。
+- 表类型如果是 InnoDB(5.7版本以前的MySQL)，那 id 就是 6。5.7版本以前的MySQL的InnoDB 表只会把自增主键的最大 id 记录在内存中，所以重启之后会导致最大 id 丢失。 MySQL 8.0 中，`AUTO_INCREMENT` 计数器的初始化行为发生了改变，每次计数器的变化都会写入到系统的重做日志（Redo log）并在每个检查点存储在引擎私有的系统表中。
 
-InnoDB 表只会把自增主键的最大 id 记录在内存中，所以重启之后会导致最大 id 丢失。
+  > In MySQL 8.0, this behavior is changed. The current maximum auto-increment counter value is written to the redo log each time it changes and is saved to an engine-private system table on each checkpoint. These changes make the current maximum auto-increment counter value persistent across server restarts.
+
+  当 MySQL 服务被重启或者处于崩溃恢复时，它可以从持久化的检查点和重做日志中恢复出最新的 `AUTO_INCREMENT` 计数器，避免出现不单调的主键。
 
 ### 16. SQL语句怎么执行的
 
