@@ -56,7 +56,7 @@ Python heapq docs:
 # 两两合并，会超时
 def merge_K_lists(self, lists: List[ListNode]) -> ListNode:
     def merge_two_lists(l1, l2):
-    	if l1 and l2:
+    	  if l1 and l2:
             if l1.val > l2.val:
                 l1, l2 = l2, l1
             l1.next = merge_two_lists(l1.next, l2)
